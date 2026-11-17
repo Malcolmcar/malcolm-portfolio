@@ -13,3 +13,5 @@
 .initiative-link{margin-left:75px}
 .study-notes{padding-left:75px}
 @media(max-width:600px){.org-logo{width:46px;height:46px;flex-basis:46px;border-radius:6px}.entry{gap:13px}.study-notes,.more-details,.campus{padding-left:59px}.initiative-link{margin-left:59px}}
+
+.initiative-links{margin-left:75px;display:flex;flex-wrap:wrap;gap:12px 20px}@media(max-width:600px){.initiative-links{margin-left:59px}}
