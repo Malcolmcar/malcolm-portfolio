@@ -1,7 +1,9 @@
 # Malcolm Carral Abreu — Personal site
 
-A responsive, buildless personal portfolio. Edit `dist/index.html` for content, `dist/style.css` for design, and `dist/script.js` for tab behavior. Serve `dist` with any static web server. There are no build dependencies.
+Responsive static portfolio. Edit dist/index.html for content, dist/style.css for design, and dist/script.js for accessible tab behavior. No build dependencies.
 
-Content sources: https://www.linkedin.com/in/malcolm-carral and the Stanford GSB Behavioral Lab directory at https://profiles.stanford.edu/browse/graduate-school-of-business?org=graduate-school-of-business%2Fgsb-research-hub%2Fbehavioral-lab . Public LinkedIn job titles are partially hidden, so no PwC role title or dates were inferred. The initials panel can be replaced with a personal photo when supplied.
+Roles, education, certifications, and volunteering are transcribed from the user-supplied LinkedIn screenshots dated November 17, 2026. JPMorganChase is explicitly marked incoming. Durations are omitted to avoid becoming stale. The website prioritizes the entries selected by the user.
 
-Design reference: https://me.taylortam.com . Original implementation; no personal photos or project material copied from the reference.
+Organization icons are locally stored in dist/assets, retrieved via Google’s favicon service using the organizations’ domains. Paddle Clean Miami’s logo is from https://linktr.ee/paddlecleanmiami. Design inspired by https://me.taylortam.com; original implementation.
+
+Full SEO logo: https://www.seo-usa.org/wp-content/uploads/2022/07/seo-usa-website-logo.png . IB logo: the official International Baccalaureate Vimeo profile (https://vimeo.com/iboorg).
