@@ -73,3 +73,13 @@ h1{font-size:34px;line-height:1.2;margin:0;letter-spacing:-1.5px}
 .closing span{font-size:11px}
 footer{font-size:10px}
 }
+
+/* Clearer text and a little more breathing room at the sides. */
+:root{--ink:#171c19;--soft:#303a33;--muted:#48534b}
+.container{width:calc(100% - 112px);max-width:1040px}
+.description{padding:30px 0 36px}
+.description p{margin:0;max-width:76ch;font-size:15px;line-height:1.8;color:var(--ink)}
+.eyebrow,.intro-footer,.intro-detail,.intro-location,.entry-date,.section-number,.resume-pending,footer{color:var(--muted)}
+.summary-text>span:not(.section-title),.role-title,.entry-copy,.compact-list p,.study-notes{color:var(--soft)}
+@media(max-width:800px){.container{width:calc(100% - 64px)}}
+@media(max-width:600px){.container{width:calc(100% - 48px)}.description{padding:25px 0 30px}.description p{font-size:14px}}
