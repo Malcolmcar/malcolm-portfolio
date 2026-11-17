@@ -7,3 +7,5 @@ Editorial selection prioritizes finance, analytical work, research, and leadersh
 Icons are local files. Sources: organizational domains via Google favicon service, SEO's official site, official IB Vimeo profile, and Paddle Clean Miami's Linktree. Original design inspired by me.taylortam.com.
 
 Logo quality update: larger local artwork from JPMorganChase's 152px touch icon, PwC's 180px touch icon, Aplazo's App Store artwork, Stanford's official 400px Block S image, Miami Beach Senior High's original mascot artwork, and Wall Street Prep's vector icon. Paddle Clean Miami retains its 400px source. No AI-generated brand marks.
+
+The latest layout follows the reference's compact introduction, two-column numbered lists, and tabbed work rows. Incoming JPMorganChase placement appears only in the introduction; other roles, research, leadership, and credentials each appear once. The earlier biography block, skill badges, repeated Stanford logo rows, large accordion stack, and closing pitch have been removed. High-resolution logos remain in the experience list.
