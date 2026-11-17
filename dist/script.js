@@ -18,7 +18,7 @@ document.querySelectorAll('[data-photo]').forEach(link => {
     const thumbnail = link.querySelector('img');
     personalPhotoFull.src = link.getAttribute('href');
     personalPhotoFull.alt = thumbnail.alt;
-    personalPhotoTitle.textContent = link.dataset.photo === 'coffee' ? 'Starbucks Coffee Master black apron' : 'On the pickleball court';
+    personalPhotoTitle.textContent = link.dataset.photoTitle || (link.dataset.photo === 'coffee' ? 'Starbucks Coffee Master black apron' : 'On the pickleball court');
     personalPhotoDialog.showModal();
   });
 });
