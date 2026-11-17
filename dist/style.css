@@ -15,3 +15,61 @@
 @media(max-width:600px){.org-logo{width:46px;height:46px;flex-basis:46px;border-radius:6px}.entry{gap:13px}.study-notes,.more-details,.campus{padding-left:59px}.initiative-link{margin-left:59px}}
 
 .initiative-links{margin-left:75px;display:flex;flex-wrap:wrap;gap:12px 20px}@media(max-width:600px){.initiative-links{margin-left:59px}}
+
+/* Reference typography and dedicated personal links. */
+.container{max-width:1140px}
+h1{font-size:clamp(36px,4.5vw,54px);margin-bottom:24px;letter-spacing:-.02em}
+.intro{grid-template-columns:minmax(0,1fr) 192px;padding-top:39px;column-gap:clamp(35px,6vw,80px)}
+.lead{font-size:17px;line-height:1.7;margin-bottom:28px}
+.intro-current{font-size:16px;line-height:1.8;margin-bottom:18px}
+.intro-location,.intro-detail{font-size:13px;color:var(--muted);line-height:1.7}
+.intro-detail{margin:13px 0 0}
+.intro-footer{display:block;margin-top:34px;padding-top:23px;padding-bottom:10px}
+.personal-links{display:flex;align-items:baseline;justify-content:flex-start;flex-wrap:wrap;gap:14px 26px;min-height:0;padding:0}
+.personal-links .text-link,.resume-pending{font-size:15px;line-height:1.6}
+.resume-pending{color:var(--muted)}
+.resume-pending small{font-size:10px;white-space:nowrap}
+.about{padding:32px 0 40px}
+.about>p{font-size:15px;line-height:1.85;max-width:80ch}
+.skill-line{font-size:11px}
+.section-dropdown>summary{padding:26px 0}
+.summary-text .section-title{font-size:18px}
+.summary-text>span:not(.section-title){font-size:13px}
+.section-number{font-size:12px}
+.entry h3{font-size:16px}
+.role-title,.entry-copy{font-size:14px}
+.entry-date{font-size:12px}
+.entry-copy p,.entry-copy li{line-height:1.8}
+.compact-list h3{font-size:14px}
+.compact-list p,.study-notes{font-size:13px}
+.more-details{font-size:13px}
+.text-link{font-size:14px}
+.closing p{font-size:19px}
+.closing span{font-size:12px}
+footer{font-size:11px}
+@media(max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 140px;column-gap:30px}}
+@media(max-width:600px){
+.intro{grid-template-columns:minmax(0,1fr) 85px;padding-top:30px;column-gap:15px}
+h1{font-size:34px;line-height:1.2;margin:0;letter-spacing:-1.5px}
+.identity{width:85px}
+.lead{font-size:15px;margin:0;line-height:1.75}
+.intro-current{font-size:14px;margin:-4px 0 0}
+.intro-location,.intro-detail{grid-column:1/-1;font-size:12px;margin:-4px 0 0}
+.intro-footer{margin-top:0;padding-top:20px;padding-bottom:5px}
+.personal-links{flex-direction:row;align-items:baseline;justify-content:flex-start;min-height:0;gap:15px 21px;padding:0}
+.personal-links .text-link,.resume-pending{font-size:14px}
+.resume-pending small{font-size:9px}
+.about>p{font-size:14px}
+.skill-line{font-size:10px}
+.summary-text .section-title{font-size:16px}
+.summary-text>span:not(.section-title){font-size:12px}
+.entry h3{font-size:15px}
+.role-title,.entry-copy{font-size:13px}
+.entry-date{font-size:11px}
+.compact-list h3{font-size:13px}
+.compact-list p,.study-notes,.more-details{font-size:12px}
+.section-number{font-size:11px}
+.closing p{font-size:18px}
+.closing span{font-size:11px}
+footer{font-size:10px}
+}
