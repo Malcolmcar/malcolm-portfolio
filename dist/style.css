@@ -95,3 +95,11 @@ footer{font-size:10px}
 @media(min-width:801px){.intro{grid-template-columns:minmax(0,1fr) 320px;column-gap:40px}.profile-photo{justify-self:center}}
 @media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 260px}.profile-photo{justify-self:center}}
 @media(max-width:600px){.profile-photo{justify-self:center}}
+
+/* A tighter transition from the introduction to Experience. */
+.intro{row-gap:18px;padding-bottom:16px}
+.intro-footer{margin-top:0;padding-top:16px;padding-bottom:0}
+.background{margin-top:0}
+.background>.section-dropdown:first-child{border-top:0}
+.background>.section-dropdown:first-child>summary{padding:20px 0}
+@media(max-width:600px){.intro{row-gap:20px;padding-bottom:12px}.intro-footer{margin-top:0;padding-top:15px}.background>.section-dropdown:first-child>summary{padding:18px 0}}
