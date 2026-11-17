@@ -90,3 +90,8 @@ footer{font-size:10px}
 .profile-photo img{position:absolute;width:170%;height:auto;max-width:none;left:-6%;top:-25%;display:block}
 @media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 220px;column-gap:30px}.profile-photo{width:220px}}
 @media(max-width:600px){.intro{grid-template-columns:minmax(0,1fr);row-gap:26px}.intro-text{display:block;grid-column:1}.eyebrow{margin:0 0 15px}h1{margin:0 0 20px}.lead{margin:0 0 22px}.intro-current{margin:0 0 17px}.intro-location{margin:0}.intro-detail{margin:12px 0 0}.profile-photo{grid-column:1;grid-row:auto;justify-self:start;width:min(100%,260px)}.intro-footer{grid-column:1}}
+
+/* Center the portrait within a wider right-hand column. */
+@media(min-width:801px){.intro{grid-template-columns:minmax(0,1fr) 320px;column-gap:40px}.profile-photo{justify-self:center}}
+@media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 260px}.profile-photo{justify-self:center}}
+@media(max-width:600px){.profile-photo{justify-self:center}}
