@@ -15,3 +15,5 @@ Pickleball card now uses the user-supplied team screenshot (Screenshot 2026-11-1
 
 
 Paddle Clean Miami is now an always-visible featured initiative between Research and Campus leadership. Three user-supplied screenshots (November 17, 2026, 7:50:13 PM, 7:50:25 PM, 7:50:48 PM) are copied unchanged as paddle-sand.png, paddle-volunteers.png, and paddle-cleanup-debris.png. Short founder copy and website/Instagram links appear with a three-photo gallery. The previous duplicate Paddle Clean Miami accordion entry was replaced by this feature. Impact totals are omitted from the feature because their confirmation was still pending. The existing photo dialog supports per-photo titles for the new images.
+
+Writing & Thoughts: three user-approved Stanford Daily article links with publication dates and brief original summaries, sourced from https://stanforddaily.com/author/malcolmca/ and each linked article. Displayed as text rows below Beyond the Résumé.

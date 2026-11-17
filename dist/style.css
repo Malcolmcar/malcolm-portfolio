@@ -158,3 +158,16 @@ footer{font-size:10px}
 .campus--standalone{margin-top:0;border-top:1px dotted var(--line);padding-top:20px}
 @media(max-width:800px){.initiative-main{gap:24px;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.initiative-story h2{font-size:23px}.initiative-description{font-size:13px}}
 @media(max-width:600px){.initiative-feature{padding:26px 0}.initiative-main{grid-template-columns:minmax(0,1fr);gap:24px}.initiative-story h2{font-size:24px}.initiative-role{font-size:11px}.initiative-description{font-size:13px;max-width:none}.initiative-gallery{gap:20px;grid-template-columns:minmax(0,1fr);margin-top:20px}.initiative-photo figcaption{font-size:10px}}
+
+/* Selected articles, presented as compact text rows. */
+.writing{border-top:1px solid var(--line);padding:30px 0 34px;scroll-margin-top:24px}
+.writing-list{margin-left:46px}
+.writing-row{display:grid;grid-template-columns:120px minmax(0,1fr) 18px;gap:22px;padding:21px 0;border-top:1px dotted var(--line);align-items:start}
+.writing-row time{font-size:12px;line-height:1.75;color:var(--muted);padding-top:2px}
+.writing-row h3{font-size:15px;font-weight:500;line-height:1.6;margin:0 0 6px;color:var(--ink)}
+.writing-row p{font-size:13px;line-height:1.8;color:var(--soft);margin:0}
+.writing-arrow{font-size:16px;line-height:1.6;color:var(--blue)}
+.writing-row:hover h3{color:var(--blue);text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.writing-row:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.writing-author{display:inline-block;margin:18px 0 0 46px;font-size:12px}
+@media(max-width:600px){.writing{padding:26px 0 30px}.writing-list{margin-left:0}.writing-row{grid-template-columns:minmax(0,1fr) 18px;gap:7px 14px;padding:19px 0}.writing-row time{grid-column:1;grid-row:1;font-size:11px;padding:0}.writing-row>div{grid-column:1;grid-row:2}.writing-arrow{grid-column:2;grid-row:1/3}.writing-row h3{font-size:14px}.writing-row p{font-size:12px}.writing-author{margin-left:0;font-size:11px}}
