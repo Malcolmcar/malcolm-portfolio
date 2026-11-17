@@ -1,9 +1,7 @@
 # Malcolm Carral Abreu — Personal site
 
-Responsive static portfolio. Edit dist/index.html for content, dist/style.css for design, and dist/script.js for accessible tab behavior. No build dependencies.
+Static portfolio; no build step. Edit dist/index.html and dist/style.css. Native details/summary elements provide accessible expandable sections even without JavaScript; script.js opens navigation destinations and updates the copyright year.
 
-Roles, education, certifications, and volunteering are transcribed from the user-supplied LinkedIn screenshots dated November 17, 2026. JPMorganChase is explicitly marked incoming. Durations are omitted to avoid becoming stale. The website prioritizes the entries selected by the user.
+Editorial selection prioritizes finance, analytical work, research, and leadership. Personal biography is concise. Family health and financial hardships, approximate GPAs, and speculative material are omitted. Content comes from the user's November 17, 2026 screenshots and supplied personal-background notes. Screenshot dates are retained where the notes identify conflicting earlier records; JPMorganChase now correctly identifies the incoming placement as Summer 2027. Metrics are user supplied.
 
-Organization icons are locally stored in dist/assets, retrieved via Google’s favicon service using the organizations’ domains. Paddle Clean Miami’s logo is from https://linktr.ee/paddlecleanmiami. Design inspired by https://me.taylortam.com; original implementation.
-
-Full SEO logo: https://www.seo-usa.org/wp-content/uploads/2022/07/seo-usa-website-logo.png . IB logo: the official International Baccalaureate Vimeo profile (https://vimeo.com/iboorg).
+Icons are local files. Sources: organizational domains via Google favicon service, SEO's official site, official IB Vimeo profile, and Paddle Clean Miami's Linktree. Original design inspired by me.taylortam.com.
