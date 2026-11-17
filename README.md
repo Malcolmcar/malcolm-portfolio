@@ -10,3 +10,5 @@ Logo quality update: larger local artwork from JPMorganChase's 152px touch icon,
 
 
 Beyond the Résumé: two open photo cards for pickleball and coffee. Pickleball photo supplied by the user as ../download.png and copied unchanged to dist/assets/pickleball.png. Coffee Master apron reference photo: https://poshmark.com/listing/NWT-Black-Starbucks-apron-coffee-master-apron-6529a5e397b5d0eaa42f0af4 ; image CDN https://di2ponv0v5otw.cloudfront.net/posts/2023/10/13/6529a5e397b5d0eaa42f0af4/m_6529a60c8d7a3cd9d36aa62e.jpg . It depicts the apron, not Malcolm. Age 16 and youngest worldwide wording were explicitly supplied and confirmed by the user; that ranking was not independently verified. No game-show content added. Photo links work directly without JavaScript and open a native dialog with JavaScript; Escape and Close dismiss it.
+
+Pickleball card now uses the user-supplied team screenshot (Screenshot 2026-11-17 at 7.44.48 PM.png) as assets/pickleball-team.png. The image is shown in full and opens larger via the existing photo dialog.
