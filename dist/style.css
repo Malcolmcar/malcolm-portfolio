@@ -103,3 +103,34 @@ footer{font-size:10px}
 .background>.section-dropdown:first-child{border-top:0}
 .background>.section-dropdown:first-child>summary{padding:20px 0}
 @media(max-width:600px){.intro{row-gap:20px;padding-bottom:12px}.intro-footer{margin-top:0;padding-top:15px}.background>.section-dropdown:first-child>summary{padding:18px 0}}
+
+/* A small, open scrapbook beyond the professional sections. */
+.beyond{border-top:1px solid var(--line);padding:32px 0 36px;scroll-margin-top:24px}
+.beyond-heading{display:grid;grid-template-columns:28px minmax(0,1fr);gap:18px;margin-bottom:25px;align-items:start}
+.beyond-heading>.section-number{padding-top:4px}
+.beyond-heading h2{font-size:18px;font-weight:500;letter-spacing:-.3px;margin:0 0 5px}
+.beyond-heading p{font-size:13px;color:var(--soft);margin:0}
+.personal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-left:46px}
+.personal-card{min-width:0;border:1px solid var(--line);background:rgba(255,255,255,.28)}
+.personal-image{position:relative;display:block;aspect-ratio:3/2;overflow:hidden;border-bottom:1px solid var(--line);background:#e6e9e3}
+.personal-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .25s ease}
+.personal-image--pickleball img{object-position:center 88%}
+.personal-image--coffee img{object-position:center 30%}
+.personal-image:hover img{transform:scale(1.025)}
+.photo-expand{position:absolute;right:11px;bottom:11px;background:rgba(243,244,242,.96);padding:5px 9px;font-size:10px;color:var(--ink);border:1px solid #d2d6d1}
+.personal-copy{padding:22px 22px 25px}
+.personal-label{font-size:10px;letter-spacing:.55px;text-transform:uppercase;color:#79513e;display:block;margin-bottom:9px}
+.personal-copy h3{font-size:18px;font-weight:500;letter-spacing:-.4px;margin:0 0 12px;line-height:1.4}
+.personal-copy p{font-size:14px;line-height:1.85;color:var(--soft);margin:0}
+.photo-dialog{border:1px solid var(--line);padding:16px;background:var(--bg);color:var(--ink);max-width:min(94vw,1100px);max-height:94vh}
+.photo-dialog::backdrop{background:rgba(15,22,18,.8)}
+.photo-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:14px}
+.photo-dialog-header h2{font-size:14px;font-weight:500;margin:0}
+.photo-dialog-header form{margin:0}
+.photo-dialog-header button{font:inherit;font-size:12px;cursor:pointer;color:var(--ink);background:none;border:1px solid var(--line);padding:6px 10px}
+.photo-dialog>img{display:block;max-width:100%;max-height:78vh;width:auto;height:auto;margin:auto;object-fit:contain}
+.personal-image:focus-visible,.photo-dialog button:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.nav-links{flex-wrap:wrap}
+@media(max-width:800px){.personal-grid{gap:20px}.personal-copy{padding:18px}.nav-links{gap:12px 20px}}
+@media(max-width:600px){.beyond{padding:26px 0 30px}.beyond-heading{grid-template-columns:20px minmax(0,1fr);gap:10px;margin-bottom:20px}.beyond-heading h2{font-size:16px}.beyond-heading p{font-size:12px}.personal-grid{grid-template-columns:minmax(0,1fr);margin-left:0;gap:24px}.personal-copy{padding:20px}.personal-copy h3{font-size:17px}.personal-copy p{font-size:13px}.personal-label{font-size:9px}.nav-links{gap:9px 17px}.photo-dialog{padding:12px}.photo-dialog-header h2{font-size:12px}.photo-dialog-header{gap:15px}}
+@media(prefers-reduced-motion:reduce){.personal-image img{transition:none}.personal-image:hover img{transform:none}}
