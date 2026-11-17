@@ -85,8 +85,8 @@ footer{font-size:10px}
 @media(max-width:600px){.container{width:calc(100% - 48px)}}
 
 /* Original portrait, framed around Malcolm's face and upper body. */
-.intro{grid-template-columns:minmax(0,1fr) 260px;column-gap:50px}
-.profile-photo{position:relative;align-self:start;aspect-ratio:4/5;width:260px;margin:0;border:1px solid var(--line);background:var(--wash);overflow:hidden}
+.intro{grid-template-columns:minmax(0,1fr) 192px;column-gap:50px}
+.profile-photo{position:relative;align-self:start;aspect-ratio:4/5;width:192px;margin:0;border:1px solid var(--line);background:var(--wash);overflow:hidden}
 .profile-photo img{position:absolute;width:170%;height:auto;max-width:none;left:-6%;top:-25%;display:block}
-@media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 220px;column-gap:30px}.profile-photo{width:220px}}
-@media(max-width:600px){.intro{grid-template-columns:minmax(0,1fr);row-gap:26px}.intro-text{display:block;grid-column:1}.eyebrow{margin:0 0 15px}h1{margin:0 0 20px}.lead{margin:0 0 22px}.intro-current{margin:0 0 17px}.intro-location{margin:0}.intro-detail{margin:12px 0 0}.profile-photo{grid-column:1;grid-row:auto;justify-self:start;width:min(100%,260px)}.intro-footer{grid-column:1}}
+@media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 180px;column-gap:30px}.profile-photo{width:180px}}
+@media(max-width:600px){.intro{grid-template-columns:minmax(0,1fr);row-gap:26px}.intro-text{display:block;grid-column:1}.eyebrow{margin:0 0 15px}h1{margin:0 0 20px}.lead{margin:0 0 22px}.intro-current{margin:0 0 17px}.intro-location{margin:0}.intro-detail{margin:12px 0 0}.profile-photo{grid-column:1;grid-row:auto;justify-self:start;width:min(100%,180px)}.intro-footer{grid-column:1}}
