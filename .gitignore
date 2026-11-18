@@ -1,0 +1,29 @@
+# Secrets and machine-local configuration
+.env
+.env.*
+*.pem
+*.key
+credentials*.json
+secrets*.json
+.aws/
+.ssh/
+
+# Generated dependencies and caches
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.cache/
+
+# Local editor/OS files and temporary outputs
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.tar
+*.tar.gz
+*.zip
+
+# The dist directory contains the actual static website and stays tracked.
