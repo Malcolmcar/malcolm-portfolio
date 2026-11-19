@@ -92,17 +92,20 @@ if (contentWorkspace) {
 const personalPhotoDialog = document.getElementById('personal-photo-dialog');
 const personalPhotoFull = document.getElementById('personal-photo-full');
 const personalPhotoTitle = document.getElementById('personal-photo-title');
-document.querySelectorAll('[data-photo]').forEach(link => {
-  link.addEventListener('click', event => {
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
-        !personalPhotoDialog || typeof personalPhotoDialog.showModal !== 'function') return;
-    event.preventDefault();
-    const thumbnail = link.querySelector('img');
-    personalPhotoFull.src = link.getAttribute('href');
-    personalPhotoFull.alt = thumbnail.alt;
-    personalPhotoTitle.textContent = link.dataset.photoTitle || (link.dataset.photo === 'coffee' ? 'Starbucks Coffee Master black apron' : 'On the pickleball court');
-    personalPhotoDialog.showModal();
-  });
+// Delegation also covers running photos inserted after their files are available.
+document.addEventListener('click', event => {
+  const link = event.target.closest?.('a[data-photo]');
+  if (!link || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
+      event.button !== 0 || !personalPhotoDialog ||
+      typeof personalPhotoDialog.showModal !== 'function') return;
+  const thumbnail = link.querySelector('img');
+  if (!thumbnail || !thumbnail.getAttribute('src')) return;
+  event.preventDefault();
+  personalPhotoFull.src = link.getAttribute('href');
+  personalPhotoFull.alt = thumbnail.alt;
+  personalPhotoTitle.textContent = link.dataset.photoTitle ||
+    (link.dataset.photo === 'coffee' ? 'Starbucks Coffee Master black apron' : 'On the pickleball court');
+  personalPhotoDialog.showModal();
 });
 if (personalPhotoDialog) personalPhotoDialog.addEventListener('click', event => {
   if (event.target !== personalPhotoDialog) return;
@@ -111,6 +114,69 @@ if (personalPhotoDialog) personalPhotoDialog.addEventListener('click', event => 
       event.clientY < bounds.top || event.clientY > bounds.bottom) personalPhotoDialog.close();
 });
 
+
+// Optional local photos are never inserted into the visible page until loaded.
+// Add the planned JPEG files to dist/assets; the next visit will pick them up.
+const beyondPhotoPanel = document.getElementById('beyond-work');
+if (beyondPhotoPanel) {
+  function loadOptionalPhoto(src, onReady) {
+    const probe = new Image();
+    probe.decoding = 'async';
+    probe.onload = () => {
+      if (probe.naturalWidth > 0 && probe.naturalHeight > 0) onReady(probe);
+    };
+    probe.onerror = () => {}; // Missing future photos leave the working layout intact.
+    probe.src = src;
+  }
+
+  function prepareBeyondPhotos() {
+    const coffeeLink = beyondPhotoPanel.querySelector('[data-optional-coffee-photo]');
+    if (coffeeLink) loadOptionalPhoto(coffeeLink.dataset.optionalCoffeePhoto, probe => {
+      const image = coffeeLink.querySelector('img');
+      coffeeLink.href = coffeeLink.dataset.optionalCoffeePhoto;
+      coffeeLink.dataset.photoTitle = 'Coffee · The black apron era.';
+      coffeeLink.setAttribute('aria-label', 'Enlarge personal coffee photograph');
+      coffeeLink.setAttribute('data-personal-photo-ready', '');
+      image.src = coffeeLink.dataset.optionalCoffeePhoto;
+      image.alt = 'Personal coffee-related photograph';
+      image.width = probe.naturalWidth;
+      image.height = probe.naturalHeight;
+    });
+
+    const gallery = document.getElementById('running-photo-gallery');
+    const template = document.getElementById('running-photo-template');
+    if (!gallery || !template) return;
+    [...template.content.querySelectorAll('[data-optional-running-photo]')].forEach((item, index) => {
+      loadOptionalPhoto(item.dataset.optionalRunningPhoto, probe => {
+        const link = item.cloneNode(true);
+        link.href = item.dataset.optionalRunningPhoto;
+        link.dataset.photoOrder = String(index);
+        const image = document.createElement('img');
+        image.src = item.dataset.optionalRunningPhoto;
+        image.alt = item.dataset.photoAlt;
+        image.width = probe.naturalWidth;
+        image.height = probe.naturalHeight;
+        image.loading = 'lazy';
+        image.decoding = 'async';
+        link.prepend(image);
+        const next = [...gallery.children].find(child => Number(child.dataset.photoOrder) > index);
+        gallery.insertBefore(link, next || null);
+        gallery.dataset.photoCount = String(gallery.children.length);
+        gallery.hidden = false;
+      });
+    });
+  }
+
+  if (!beyondPhotoPanel.hidden || typeof MutationObserver !== 'function') prepareBeyondPhotos();
+  else {
+    const photoObserver = new MutationObserver(() => {
+      if (beyondPhotoPanel.hidden) return;
+      photoObserver.disconnect();
+      prepareBeyondPhotos();
+    });
+    photoObserver.observe(beyondPhotoPanel, { attributes:true, attributeFilter:['hidden'] });
+  }
+}
 
 // The running profile URL and milestone are configured on the hero link.
 const runningLink = document.querySelector('.running-link');
