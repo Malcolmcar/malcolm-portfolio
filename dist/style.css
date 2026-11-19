@@ -343,33 +343,36 @@ footer{font-size:10px}
 
 
 /* A discreet running profile beside the hero résumé link. */
-.intro-footer .resume-running { display:inline-flex; align-items:baseline; gap:16px; white-space:nowrap; max-width:100%; }
-.running-track { position:relative; display:inline-block; flex:0 0 70px; width:70px; height:20px; vertical-align:text-bottom; color:var(--blue); }
+.intro-footer .resume-running { display:inline-flex; flex:1 1 100px; min-width:0; align-items:baseline; gap:16px; white-space:nowrap; max-width:100%; }
+.running-track { position:relative; display:inline-block; flex:1 1 20px; min-width:20px; height:20px; vertical-align:text-bottom; color:var(--blue); }
 .running-link { position:absolute; left:0; top:0; display:flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:2px; color:var(--blue); animation:runner-travel 6s ease-in-out infinite; }
 .running-link[aria-disabled="true"] { cursor:default; }
 .running-link:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
-.running-icon { display:block; flex:none; width:18px; height:20px; overflow:visible; }
+.running-icon { display:block; flex:none; width:18px; height:20px; overflow:visible; animation:runner-facing 6s step-end infinite; }
 .runner-figure { animation:runner-bob .36s ease-in-out infinite; }
 .runner-arm { transform-origin:13px 9px; animation:runner-arm .36s ease-in-out infinite alternate; }
 .runner-arm--back { animation-delay:-.36s; }
 .runner-leg { transform-origin:11.5px 15px; animation:runner-leg .36s ease-in-out infinite alternate; }
 .runner-leg--back { animation-delay:-.36s; }
-.running-tooltip { position:absolute; right:0; bottom:calc(100% + 12px); z-index:12; width:max-content; max-width:min(240px,calc(100vw - 48px)); white-space:normal; background:var(--ink); color:var(--bg); font:400 10px/1.6 'IBM Plex Mono',ui-monospace,monospace; text-align:left; padding:7px 10px; border-radius:3px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .12s ease; }
-.running-track:hover .running-tooltip, .running-track:focus-within .running-tooltip { opacity:1; visibility:visible; pointer-events:auto; }
+.running-tooltip { position:absolute; right:0; bottom:calc(100% + 12px); z-index:12; width:max-content; max-width:min(240px,calc(100vw - 48px)); white-space:normal; background:var(--ink); color:var(--bg); font:400 10px/1.6 'IBM Plex Mono',ui-monospace,monospace; text-align:left; padding:7px 10px; border-radius:3px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .12s ease; transform:translateX(var(--running-tooltip-shift,0px)); }
+.running-link:hover .running-tooltip, .running-track:focus-within .running-tooltip { opacity:1; visibility:visible; pointer-events:auto; }
 .running-profile-label, .running-profile-url, .running-tooltip [data-running-milestone-text] { display:block; }
 .running-profile-url { overflow-wrap:anywhere; }
 .running-tooltip [data-running-milestone-text] { margin-top:4px; opacity:.8; }
 .running-tooltip::after { content:''; position:absolute; left:0; right:0; bottom:-12px; height:12px; }
 .running-track[data-tooltip-dismissed] .running-tooltip { opacity:0; visibility:hidden; pointer-events:none; }
-.running-track:hover .running-link, .running-track:focus-within .running-link,
-.running-track:hover .runner-figure, .running-track:focus-within .runner-figure,
-.running-track:hover .runner-arm, .running-track:focus-within .runner-arm,
-.running-track:hover .runner-leg, .running-track:focus-within .runner-leg { animation-play-state:paused; }
+.running-link:hover, .running-track:focus-within .running-link,
+.running-link:hover .running-icon, .running-track:focus-within .running-icon,
+.running-link:hover .runner-figure, .running-track:focus-within .runner-figure,
+.running-link:hover .runner-arm, .running-track:focus-within .runner-arm,
+.running-link:hover .runner-leg, .running-track:focus-within .runner-leg { animation-play-state:paused; }
 @keyframes runner-travel {
-  0%, 100% { transform:translateX(0) scaleX(1); }
-  49.99% { transform:translateX(50px) scaleX(1); }
-  50% { transform:translateX(50px) scaleX(-1); }
-  99.99% { transform:translateX(0) scaleX(-1); }
+  0%, 100% { left:0; }
+  50% { left:calc(100% - 20px); }
+}
+@keyframes runner-facing {
+  0%, 100% { transform:scaleX(1); }
+  50% { transform:scaleX(-1); }
 }
 @keyframes runner-bob { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-.7px); } }
 @keyframes runner-arm { from { transform:rotate(-20deg); } to { transform:rotate(20deg); } }
@@ -379,6 +382,6 @@ footer{font-size:10px}
   .intro-footer .resume-running { gap:8px; }
 }
 @media(prefers-reduced-motion:reduce) {
-  .running-link, .runner-figure, .runner-arm, .runner-leg { animation:none; }
+  .running-link, .running-icon, .runner-figure, .runner-arm, .runner-leg { animation:none; }
   .running-tooltip { transition:none; }
 }

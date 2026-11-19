@@ -53,7 +53,19 @@ if (runningLink) {
   runningLink.addEventListener('keydown', event => {
     if (event.key === 'Escape') track.setAttribute('data-tooltip-dismissed', '');
   });
-  runningLink.addEventListener('focus', () => track.removeAttribute('data-tooltip-dismissed'));
+  function positionRunningTooltip() {
+    tooltip.style.setProperty('--running-tooltip-shift', '0px');
+    const bounds = tooltip.getBoundingClientRect();
+    const viewportWidth = document.documentElement.clientWidth;
+    const shift = bounds.left < 8 ? 8 - bounds.left :
+      bounds.right > viewportWidth - 8 ? viewportWidth - 8 - bounds.right : 0;
+    tooltip.style.setProperty('--running-tooltip-shift', `${shift}px`);
+  }
+  runningLink.addEventListener('mouseenter', positionRunningTooltip);
+  runningLink.addEventListener('focus', () => {
+    track.removeAttribute('data-tooltip-dismissed');
+    positionRunningTooltip();
+  });
   track.addEventListener('mouseleave', () => track.removeAttribute('data-tooltip-dismissed'));
 }
 
