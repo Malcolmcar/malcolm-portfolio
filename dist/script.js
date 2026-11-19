@@ -30,6 +30,33 @@ if (personalPhotoDialog) personalPhotoDialog.addEventListener('click', event => 
 });
 
 
+// The running profile URL and milestone are configured on the hero link.
+const runningLink = document.querySelector('.running-link');
+if (runningLink) {
+  const tooltip = document.getElementById('running-milestone');
+  const milestone = tooltip.querySelector('[data-running-milestone-text]') || tooltip;
+  milestone.textContent = runningLink.dataset.runningMilestone || 'Next running milestone: to be announced.';
+  try {
+    const profile = new URL(runningLink.dataset.profileUrl);
+    if (profile.protocol === 'https:' || profile.protocol === 'http:') {
+      runningLink.href = profile.href;
+      runningLink.target = '_blank';
+      runningLink.rel = 'noopener noreferrer';
+      runningLink.removeAttribute('aria-disabled');
+      runningLink.setAttribute('aria-label', 'My running profile on Strava (opens in a new tab)');
+    }
+  } catch { /* Empty placeholder: leave navigation disabled. */ }
+  runningLink.addEventListener('click', event => {
+    if (!runningLink.hasAttribute('href')) event.preventDefault();
+  });
+  const track = runningLink.closest('.running-track');
+  runningLink.addEventListener('keydown', event => {
+    if (event.key === 'Escape') track.setAttribute('data-tooltip-dismissed', '');
+  });
+  runningLink.addEventListener('focus', () => track.removeAttribute('data-tooltip-dismissed'));
+  track.addEventListener('mouseleave', () => track.removeAttribute('data-tooltip-dismissed'));
+}
+
 // Natural Earth geography uses an equirectangular projection. Most pins represent
 // countries/territories; the three named cities have their own coordinates.
 const travelMap = document.getElementById("travel-map");

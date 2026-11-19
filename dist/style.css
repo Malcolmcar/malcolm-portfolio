@@ -86,10 +86,10 @@ footer{font-size:10px}
 
 /* Original portrait, framed around Malcolm's face and upper body. */
 .intro{grid-template-columns:minmax(0,1fr) 260px;column-gap:50px}
-.profile-photo{position:relative;align-self:start;aspect-ratio:4/5;width:260px;margin:0;border:1px solid var(--line);background:var(--wash);overflow:hidden}
-.profile-photo img{position:absolute;width:170%;height:auto;max-width:none;left:-6%;top:-25%;display:block}
-@media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 220px;column-gap:30px}.profile-photo{width:220px}}
-@media(max-width:600px){.intro{grid-template-columns:minmax(0,1fr);row-gap:26px}.intro-text{display:block;grid-column:1}.eyebrow{margin:0 0 15px}h1{margin:0 0 20px}.lead{margin:0 0 22px}.intro-current{margin:0 0 17px}.intro-location{margin:0}.intro-detail{margin:12px 0 0}.profile-photo{grid-column:1;grid-row:auto;justify-self:start;width:min(100%,260px)}.intro-footer{grid-column:1}}
+.profile-photo{position:relative;align-self:center;justify-self:center;aspect-ratio:4/5;width:210px;margin:0;border:1px solid var(--line);background:var(--wash);overflow:hidden}
+.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:35% 50%;display:block}
+@media(min-width:601px) and (max-width:800px){.intro{grid-template-columns:minmax(0,1fr) 220px;column-gap:30px}.profile-photo{width:190px}}
+@media(max-width:600px){.intro{grid-template-columns:minmax(0,1fr);row-gap:26px}.intro-text{display:block;grid-column:1}.eyebrow{margin:0 0 15px}h1{margin:0 0 20px}.lead{margin:0 0 22px}.intro-current{margin:0 0 17px}.intro-location{margin:0}.intro-detail{margin:12px 0 0}.profile-photo{grid-column:1;grid-row:auto;justify-self:center;width:min(100%,190px)}.intro-footer{grid-column:1}}
 
 /* Center the portrait within a wider right-hand column. */
 @media(min-width:801px){.intro{grid-template-columns:minmax(0,1fr) 320px;column-gap:40px}.profile-photo{justify-self:center}}
@@ -340,3 +340,45 @@ footer{font-size:10px}
 #places .travel-view-controls { padding: 0; border: 0; }
 #places .travel-map-panel { border: 0; }
 #paddle-clean-miami .initiative-gallery { margin-top: 0; }
+
+
+/* A discreet running profile beside the hero résumé link. */
+.intro-footer .resume-running { display:inline-flex; align-items:baseline; gap:16px; white-space:nowrap; max-width:100%; }
+.running-track { position:relative; display:inline-block; flex:0 0 70px; width:70px; height:20px; vertical-align:text-bottom; color:var(--blue); }
+.running-link { position:absolute; left:0; top:0; display:flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:2px; color:var(--blue); animation:runner-travel 6s ease-in-out infinite; }
+.running-link[aria-disabled="true"] { cursor:default; }
+.running-link:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
+.running-icon { display:block; flex:none; width:18px; height:20px; overflow:visible; }
+.runner-figure { animation:runner-bob .36s ease-in-out infinite; }
+.runner-arm { transform-origin:13px 9px; animation:runner-arm .36s ease-in-out infinite alternate; }
+.runner-arm--back { animation-delay:-.36s; }
+.runner-leg { transform-origin:11.5px 15px; animation:runner-leg .36s ease-in-out infinite alternate; }
+.runner-leg--back { animation-delay:-.36s; }
+.running-tooltip { position:absolute; right:0; bottom:calc(100% + 12px); z-index:12; width:max-content; max-width:min(240px,calc(100vw - 48px)); white-space:normal; background:var(--ink); color:var(--bg); font:400 10px/1.6 'IBM Plex Mono',ui-monospace,monospace; text-align:left; padding:7px 10px; border-radius:3px; opacity:0; visibility:hidden; pointer-events:none; transition:opacity .12s ease; }
+.running-track:hover .running-tooltip, .running-track:focus-within .running-tooltip { opacity:1; visibility:visible; pointer-events:auto; }
+.running-profile-label, .running-profile-url, .running-tooltip [data-running-milestone-text] { display:block; }
+.running-profile-url { overflow-wrap:anywhere; }
+.running-tooltip [data-running-milestone-text] { margin-top:4px; opacity:.8; }
+.running-tooltip::after { content:''; position:absolute; left:0; right:0; bottom:-12px; height:12px; }
+.running-track[data-tooltip-dismissed] .running-tooltip { opacity:0; visibility:hidden; pointer-events:none; }
+.running-track:hover .running-link, .running-track:focus-within .running-link,
+.running-track:hover .runner-figure, .running-track:focus-within .runner-figure,
+.running-track:hover .runner-arm, .running-track:focus-within .runner-arm,
+.running-track:hover .runner-leg, .running-track:focus-within .runner-leg { animation-play-state:paused; }
+@keyframes runner-travel {
+  0%, 100% { transform:translateX(0) scaleX(1); }
+  49.99% { transform:translateX(50px) scaleX(1); }
+  50% { transform:translateX(50px) scaleX(-1); }
+  99.99% { transform:translateX(0) scaleX(-1); }
+}
+@keyframes runner-bob { 0%, 100% { transform:translateY(0); } 50% { transform:translateY(-.7px); } }
+@keyframes runner-arm { from { transform:rotate(-20deg); } to { transform:rotate(20deg); } }
+@keyframes runner-leg { from { transform:rotate(-19deg); } to { transform:rotate(19deg); } }
+@media(max-width:400px) {
+  .intro-footer .personal-links { column-gap:12px; }
+  .intro-footer .resume-running { gap:8px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .running-link, .runner-figure, .runner-arm, .runner-leg { animation:none; }
+  .running-tooltip { transition:none; }
+}
