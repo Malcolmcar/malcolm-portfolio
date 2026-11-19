@@ -345,10 +345,10 @@ footer{font-size:10px}
 /* A discreet running profile beside the hero résumé link. */
 .intro-footer .resume-running { display:inline-flex; flex:1 1 100px; min-width:0; align-items:baseline; gap:16px; white-space:nowrap; max-width:100%; }
 .running-track { position:relative; display:inline-block; flex:1 1 20px; min-width:20px; height:20px; vertical-align:text-bottom; color:var(--blue); }
-.running-link { position:absolute; left:0; top:0; display:flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:2px; color:var(--blue); animation:runner-travel 6s ease-in-out infinite; }
+.running-link { position:absolute; left:0; top:0; display:flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:2px; color:var(--blue); animation:runner-travel 16s ease-in-out infinite; }
 .running-link[aria-disabled="true"] { cursor:default; }
 .running-link:focus-visible { outline:2px solid var(--blue); outline-offset:4px; }
-.running-icon { display:block; flex:none; width:18px; height:20px; overflow:visible; animation:runner-facing 6s step-end infinite; }
+.running-icon { display:block; flex:none; width:18px; height:20px; overflow:visible; animation:runner-facing 16s step-end infinite; }
 .runner-figure { animation:runner-bob .36s ease-in-out infinite; }
 .runner-arm { transform-origin:13px 9px; animation:runner-arm .36s ease-in-out infinite alternate; }
 .runner-arm--back { animation-delay:-.36s; }
@@ -384,4 +384,77 @@ footer{font-size:10px}
 @media(prefers-reduced-motion:reduce) {
   .running-link, .running-icon, .runner-figure, .runner-arm, .runner-leg { animation:none; }
   .running-tooltip { transition:none; }
+}
+
+/* Editorial content navigation; the hero and standalone map retain their styles. */
+.portfolio-workspace { display:grid; grid-template-columns:210px minmax(0,1fr); gap:36px; align-items:start; padding:28px 0 36px; }
+.section-rail { display:block; position:sticky; top:24px; align-self:start; min-width:0; min-height:0; padding:0; }
+.content-tablist { display:grid; border-left:1px solid var(--line); }
+.content-tab { position:relative; display:grid; grid-template-columns:22px minmax(0,1fr); gap:10px; align-items:baseline; width:100%; min-height:48px; padding:12px 14px; border:0; border-radius:0; background:transparent; color:var(--soft); text-align:left; font:400 13px/1.6 'IBM Plex Mono',ui-monospace,monospace; cursor:pointer; }
+.content-tab-number { font-size:11px; color:var(--muted); }
+.content-tab::before { content:''; position:absolute; left:-1px; top:8px; bottom:8px; width:2px; background:transparent; }
+.content-tab[aria-selected="true"] { background:var(--wash); color:var(--blue); font-weight:500; }
+.content-tab[aria-selected="true"]::before { background:var(--blue); }
+.content-tab:hover { background:var(--wash); color:var(--blue); }
+.content-tab:focus-visible { outline:2px solid var(--blue); outline-offset:-3px; }
+.content-panels { min-width:0; }
+.portfolio-workspace .tab-panel { min-width:0; scroll-margin-top:28px; }
+.portfolio-workspace .tab-panel[hidden] { display:none !important; }
+.tab-panel:focus-visible { outline:2px solid var(--blue); outline-offset:7px; }
+.panel-heading { padding:0 0 16px; margin:0 0 5px; border:0; border-bottom:1px solid var(--line); }
+.panel-heading h2 { font-size:22px; font-weight:500; letter-spacing:-.6px; margin:0 0 6px; line-height:1.4; }
+.panel-heading p { margin:0; font-size:12px; color:var(--soft); }
+.portfolio-workspace .entry:first-of-type { border-top:0; }
+.portfolio-workspace .entry { padding:20px 0; }
+.portfolio-workspace .more-details { margin-top:0; }
+.panel-subsection { margin-top:24px; }
+.panel-subsection > h3 { margin:0 0 6px; padding-top:18px; border-top:1px solid var(--line); font-size:16px; font-weight:500; }
+.portfolio-workspace .campus { border:0; margin-top:0; padding-top:14px; }
+#projects #paddle-clean-miami { margin:0; padding:18px 0 0; border:0; }
+#projects .section-heading { display:block; margin-bottom:18px; }
+#projects #paddle-title { font-size:21px; font-weight:500; letter-spacing:-.4px; line-height:1.4; margin:0 0 7px; color:var(--blue); }
+#projects #paddle-clean-miami .section-heading p { font-size:12px; }
+#projects #paddle-clean-miami .initiative-card { margin-left:0; gap:24px; grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr); }
+#projects #paddle-clean-miami .initiative-story h4 { font-family:var(--mono); font-size:18px; font-weight:500; letter-spacing:-.4px; color:var(--blue); margin:0 0 14px; }
+#projects #paddle-clean-miami .initiative-story p:not(.small-label) { font-size:14px; }
+#projects #paddle-clean-miami .project-gallery { margin-left:0; }
+#beyond-work .beyond, #beyond-work .writing { padding:18px 0 24px; border-top:0; }
+#beyond-work .writing { border-top:1px solid var(--line); }
+#beyond-work .beyond-heading { display:block; margin-bottom:20px; }
+#beyond-work .beyond-heading h3 { font-size:17px; font-weight:500; letter-spacing:-.3px; margin:0 0 6px; }
+#beyond-work .beyond-heading p { font-size:12px; }
+#beyond-work .personal-grid, #beyond-work .writing-list { margin-left:0; gap:24px; }
+#beyond-work .personal-copy { padding:18px; }
+#beyond-work .personal-copy h3 { font-size:17px; }
+#beyond-work .writing-row { grid-template-columns:100px minmax(0,1fr) 18px; gap:18px; }
+#beyond-work .writing-author { margin-left:0; }
+.tab-panel.panel-enter { animation:panel-enter .16s ease-out; }
+@keyframes panel-enter { from { opacity:0; transform:translateY(3px); } to { opacity:1; transform:translateY(0); } }
+@media(min-width:761px) and (max-width:900px) {
+  .portfolio-workspace { grid-template-columns:190px minmax(0,1fr); gap:28px; }
+  #projects #paddle-clean-miami .initiative-card { grid-template-columns:minmax(0,1fr); gap:20px; }
+  #projects .initiative-photo--main { max-width:330px; }
+}
+@media(max-width:760px) {
+  .portfolio-workspace { grid-template-columns:minmax(0,1fr); gap:22px; padding:18px 0 28px; }
+  .section-rail { position:static; width:100%; }
+  .content-tablist { display:flex; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; border-left:0; border-bottom:1px solid var(--line); padding-bottom:3px; }
+  .content-tab { display:flex; flex:0 0 auto; width:auto; gap:8px; min-height:46px; white-space:nowrap; padding:11px 13px; font-size:12px; }
+  .content-tab::before { top:auto; bottom:0; left:12px; right:12px; width:auto; height:2px; }
+  .panel-heading h2 { font-size:20px; }
+  .tab-panel:focus-visible { outline-offset:3px; }
+  #projects #paddle-clean-miami .initiative-card { gap:22px; }
+}
+@media(max-width:600px) {
+  #projects #paddle-clean-miami .initiative-card { grid-template-columns:minmax(0,1fr); }
+  #projects .initiative-photo--main { max-width:360px; }
+  #beyond-work .writing-row { grid-template-columns:minmax(0,1fr) 18px; gap:7px 14px; }
+  #beyond-work .personal-grid { gap:24px; }
+}
+@media(prefers-reduced-motion:reduce) { .tab-panel.panel-enter { animation:none; } }
+@media print {
+  .section-rail { display:none; }
+  .portfolio-workspace { display:block; }
+  .portfolio-workspace .tab-panel[hidden] { display:block !important; }
+  .portfolio-workspace .tab-panel { margin-bottom:24px; }
 }

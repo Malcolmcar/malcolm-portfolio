@@ -7,6 +7,88 @@ document.querySelectorAll('[data-reveal]').forEach(link => {
 });
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Editorial tabs: automatic keyboard activation, roving focus, and deep links.
+const contentWorkspace = document.querySelector('.portfolio-workspace');
+if (contentWorkspace) {
+  const tablist = contentWorkspace.querySelector('[role="tablist"]');
+  const tabs = [...tablist.querySelectorAll('[role="tab"]')];
+  const panels = [...contentWorkspace.querySelectorAll('[role="tabpanel"]')];
+  const horizontalTabs = window.matchMedia('(max-width:760px)');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion:reduce)');
+  let activePanelId = 'experience';
+
+  function locationId() {
+    try { return decodeURIComponent(window.location.hash.slice(1)); }
+    catch { return ''; }
+  }
+
+  function activateContent(id, { historyMode = 'none', focusTab = false } = {}) {
+    const selected = tabs.find(tab => tab.getAttribute('aria-controls') === id);
+    if (!selected) return;
+    const changed = activePanelId !== id;
+    tabs.forEach(tab => {
+      const active = tab === selected;
+      tab.setAttribute('aria-selected', String(active));
+      tab.setAttribute('tabindex', active ? '0' : '-1');
+    });
+    panels.forEach(panel => {
+      const active = panel.id === id;
+      panel.hidden = !active;
+      panel.classList.remove('panel-enter');
+      if (active && changed && !reducedMotion.matches) {
+        panel.classList.add('panel-enter');
+        setTimeout(() => panel.classList.remove('panel-enter'), 180);
+      }
+    });
+    activePanelId = id;
+    if (historyMode !== 'none' && locationId() !== id) {
+      const method = historyMode === 'replace' ? 'replaceState' : 'pushState';
+      window.history[method](null, '', '#' + id);
+    }
+    if (focusTab) {
+      selected.focus({ preventScroll:true });
+      if (horizontalTabs.matches) selected.scrollIntoView({ block:'nearest', inline:'nearest', behavior:'auto' });
+    }
+  }
+
+  function followContentHash() {
+    const id = locationId();
+    if (!id) { activateContent('experience'); return; }
+    const target = document.getElementById(id);
+    const panel = target?.closest('.tab-panel');
+    if (!panel || !contentWorkspace.contains(panel)) return;
+    activateContent(panel.id);
+    for (let ancestor = target.parentElement; ancestor && ancestor !== panel; ancestor = ancestor.parentElement) {
+      if (ancestor instanceof HTMLDetailsElement) ancestor.open = true;
+    }
+    requestAnimationFrame(() => target.scrollIntoView({ block:'start', behavior:'auto' }));
+  }
+
+  function syncTabOrientation() {
+    tablist.setAttribute('aria-orientation', horizontalTabs.matches ? 'horizontal' : 'vertical');
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateContent(tab.getAttribute('aria-controls'), { historyMode:'push' }));
+    tab.addEventListener('keydown', event => {
+      const previous = horizontalTabs.matches ? 'ArrowLeft' : 'ArrowUp';
+      const next = horizontalTabs.matches ? 'ArrowRight' : 'ArrowDown';
+      let destination;
+      if (event.key === previous) destination = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === next) destination = (index + 1) % tabs.length;
+      else if (event.key === 'Home') destination = 0;
+      else if (event.key === 'End') destination = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      activateContent(tabs[destination].getAttribute('aria-controls'), { historyMode:'replace', focusTab:true });
+    });
+  });
+  horizontalTabs.addEventListener('change', syncTabOrientation);
+  window.addEventListener('hashchange', followContentHash);
+  window.addEventListener('popstate', followContentHash);
+  syncTabOrientation();
+  followContentHash();
+}
+
 const personalPhotoDialog = document.getElementById('personal-photo-dialog');
 const personalPhotoFull = document.getElementById('personal-photo-full');
 const personalPhotoTitle = document.getElementById('personal-photo-title');
