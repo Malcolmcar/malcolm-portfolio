@@ -1,46 +1,34 @@
 "use strict";
-
-const year = document.getElementById("year");
-if (year) year.textContent = new Date().getFullYear();
-
-// Native details keeps the mobile navigation useful without JavaScript.
-const mobileMenu = document.querySelector(".mobile-menu");
-mobileMenu?.querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => { mobileMenu.open = false; });
-});
-document.addEventListener("keydown", event => {
-  if (event.key === "Escape" && mobileMenu?.open) {
-    mobileMenu.open = false;
-    mobileMenu.querySelector("summary").focus();
-  }
-});
-document.addEventListener("click", event => {
-  if (mobileMenu?.open && !mobileMenu.contains(event.target)) mobileMenu.open = false;
-});
-
-// Image links remain direct links if native dialogs are unavailable.
-const photoDialog = document.getElementById("personal-photo-dialog");
-const photoFull = document.getElementById("personal-photo-full");
-const photoTitle = document.getElementById("personal-photo-title");
-document.querySelectorAll("[data-photo]").forEach(link => {
-  link.addEventListener("click", event => {
-    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
-        event.button !== 0 || !photoDialog || typeof photoDialog.showModal !== "function") return;
-    event.preventDefault();
-    const thumbnail = link.querySelector("img");
-    photoFull.src = link.getAttribute("href");
-    photoFull.alt = thumbnail?.alt || "";
-    photoTitle.textContent = link.dataset.photoTitle ||
-      (link.dataset.photo === "coffee" ? "Starbucks Coffee Master black apron" : "On the pickleball court");
-    photoDialog.showModal();
+document.querySelectorAll('[data-reveal]').forEach(link => {
+  link.addEventListener('click', () => {
+    const section = document.getElementById(link.dataset.reveal);
+    if (section instanceof HTMLDetailsElement) section.open = true;
   });
 });
-photoDialog?.addEventListener("click", event => {
-  if (event.target !== photoDialog) return;
-  const bounds = photoDialog.getBoundingClientRect();
-  if (event.clientX < bounds.left || event.clientX > bounds.right ||
-      event.clientY < bounds.top || event.clientY > bounds.bottom) photoDialog.close();
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const personalPhotoDialog = document.getElementById('personal-photo-dialog');
+const personalPhotoFull = document.getElementById('personal-photo-full');
+const personalPhotoTitle = document.getElementById('personal-photo-title');
+document.querySelectorAll('[data-photo]').forEach(link => {
+  link.addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey ||
+        !personalPhotoDialog || typeof personalPhotoDialog.showModal !== 'function') return;
+    event.preventDefault();
+    const thumbnail = link.querySelector('img');
+    personalPhotoFull.src = link.getAttribute('href');
+    personalPhotoFull.alt = thumbnail.alt;
+    personalPhotoTitle.textContent = link.dataset.photoTitle || (link.dataset.photo === 'coffee' ? 'Starbucks Coffee Master black apron' : 'On the pickleball court');
+    personalPhotoDialog.showModal();
+  });
 });
+if (personalPhotoDialog) personalPhotoDialog.addEventListener('click', event => {
+  if (event.target !== personalPhotoDialog) return;
+  const bounds = personalPhotoDialog.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right ||
+      event.clientY < bounds.top || event.clientY > bounds.bottom) personalPhotoDialog.close();
+});
+
 
 // Natural Earth geography uses an equirectangular projection. Most pins represent
 // countries/territories; the three named cities have their own coordinates.
